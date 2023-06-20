@@ -9,7 +9,7 @@ const app = express()
 app.use(morgan('dev'));
 
 var db;
-var databaseUrl = 'mongodb://15.165.178.2:27017';
+var databaseUrl = 'mongodb://192.168.1.79:27017';
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + './index.html');
@@ -22,7 +22,7 @@ app.get("/worldcup", (req, res) => {
                 res.json({'count':0});
                 console.log(err);
     } else {
-        db.database.db('test');
+        db=database.db('test');
         db.collection('worldcup').find({}, {_id:0, no:1, nation:1, date:1})
 	.toArray(function(err, result) {
                 if (err) throw err;
